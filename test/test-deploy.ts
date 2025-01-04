@@ -27,4 +27,14 @@ describe("SimpleStorage", function ()  {
         assert(currentValue.toString() === expectedValue);
     });
 
+    it ("Should add a person and their favorite number", async function () {
+        const expectedName = "John";
+        const expectedNumber = "7";
+        const transactionResponse = await simpleStorage.addPerson(expectedName, expectedNumber);
+        await transactionResponse.wait(1);
+        const currentNumber = await simpleStorage.nameToFavoriteNumber(expectedName);
+
+        assert(currentNumber.toString() === expectedNumber);
+    });
+
 });
